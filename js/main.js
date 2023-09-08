@@ -6,11 +6,11 @@ let productos = []
 
 
 
-function menu(){
+/* function menu(){
     return parseInt(prompt("Menu de opciones\n1- Ver listado de clientes\n2- Cargar nuevo cliente\n3- Eliminar cliente\n4- Cargar producto\n5- Comprar\n0- Salir"))
 }
-
-function seleccionarOpcion(){{
+ */
+/* function seleccionarOpcion(){{
     let op = menu()
     while (op != 0){
         switch (op){
@@ -37,7 +37,7 @@ function seleccionarOpcion(){{
     } 
     alert("Saliendo")
 }}
-
+ */
 //Clase producto y cliente
 class Producto{
     constructor(nombre, precio, stock){
@@ -53,7 +53,6 @@ class Cliente{
         this.nombre = nombre
         this.numero = parseInt(numero)
         this.mail = mail
-        this.alta = true
     }
 }
 
@@ -67,8 +66,9 @@ function verClientes(clientes){
             alert("Nombre: " + cliente.nombre + " | Numero: " + cliente.numero + " | Email: " + cliente.mail)
         }
     }
-
 }
+let boton = document.getElementById("verClientes")
+boton.onclick = () => verClientes(clientes)
 
 //Opcion 2
 function nuevoCliente(clientes){
@@ -80,6 +80,8 @@ function nuevoCliente(clientes){
     clientes.push(nuevo)
     alert("¡Cliente agregado con exito!")
 }
+let registrar = document.getElementById("nuevoCliente")
+registrar.onclick = () => nuevoCliente(clientes)
 
 //Opcion 3
 function borrarCliente(clientes){
@@ -100,6 +102,8 @@ function borrarCliente(clientes){
     }
 
 }
+let registrar = document.getElementById("borrarCliente")
+registrar.onclick = () => borrarCliente(clientes)
 
 //Opcion 4
 function cargarProducto(productos){
@@ -110,13 +114,12 @@ function cargarProducto(productos){
     productos.push(nuevoProducto)
     alert("Datos del articulo stockeado\n-Articulo: " + art + "\n-Precio: $" + precio + "\n-Existencia: " + cant +"\n¡Producto agregado con exito!")
 }
+let registrar = document.getElementById("cargarProducto")
+registrar.onclick = () => cargarProducto(productos)
 
 //Opcion 5
 function comprar(clientes, productos) {
-    
-    if (!clienteEncontrado) {
-        alert("Cliente no encontrado en la base de datos.");
-    }
+
 }
 
 //Codigo main
