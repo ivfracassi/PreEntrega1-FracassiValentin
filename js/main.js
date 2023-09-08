@@ -113,41 +113,6 @@ function cargarProducto(productos){
 
 //Opcion 5
 function comprar(clientes, productos) {
-    let nombreCliente = prompt("Ingrese el nombre del cliente que va a realizar la compra: ");
-    
-    // Buscar el cliente en la base de datos
-    let clienteEncontrado = false;
-    for (let i = 0; i < clientes.length; i++) {
-        if (clientes[i].nombre === nombreCliente) {
-            clienteEncontrado = true;
-            
-            // Mostrar los productos disponibles
-            alert("Productos disponibles:");
-            for (let j = 0; j < productos.length; j++) {
-                if (productos[j].disponible) {
-                    alert(j + 1 + ". " + productos[j].nombre + " - Precio: $" + productos[j].precio);
-                }
-            }
-            
-            let indiceProducto = parseInt(prompt("Ingrese el número del producto que desea comprar: ")) - 1;
-            
-            if (indiceProducto >= 0 && indiceProducto < productos.length && productos[indiceProducto].disponible) {
-                let cantidadCompra = parseInt(prompt("Ingrese la cantidad que desea comprar: "));
-                
-                if (cantidadCompra <= productos[indiceProducto].cantidad) {
-                    productos[indiceProducto].cantidad -= cantidadCompra;
-                    let totalCompra = cantidadCompra * productos[indiceProducto].precio;
-                    alert("Producto agregado al carrito.\nTotal de la compra: $" + totalCompra);
-                    
-                } else {
-                    alert("No hay suficiente stock para esa cantidad.");
-                }
-            } else {
-                alert("Número de producto inválido.");
-            }
-            break;
-        }
-    }
     
     if (!clienteEncontrado) {
         alert("Cliente no encontrado en la base de datos.");
