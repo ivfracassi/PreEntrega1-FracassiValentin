@@ -1,87 +1,81 @@
 * {
-    padding: 0;
-    margin: 0;
-  }
-  
-  p {
-    text-align: center;
-    padding: 1%;
-  }
-  
-  body {
-    font-family: "Ysabeau SC", sans-serif;
-    height: 100%;
-  }
-  
-  .encabezado {
-    display: flex;
-    justify-content: space-between;
-    background-color: #7C90A0;
-    padding: 5px;
-  }
-  
-  .nav-encabezado {
-    height: 50%;
-    width: 40%;
-    padding: 10px;
-    display: flex;
-    color: snow;
-    justify-content: space-around;
-    border-radius: 10px;
-  }
-  
-  .boton-main {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #F1DAC4;
-    text-decoration: none;
-    color: #201E1F;
-    border-radius: 10px;
-    font-weight: 600;
-  }
-  
-  .boton-main:hover {
-    background-color: #201E1F;
-    color: #F1DAC4;
-  }
-  
-  #dark {
-    background-color: #201E1F;
-    color: #F1DAC4;
-  }
-  
-  #dark:hover {
-    background-color: #AA6373;
-    color: snow;
-  }
-  
-  #carrito{
-    background-image: url("../img/carrito.png");
-  }
-  
-  #carrito:hover{
-    background-image: url("../img/carrito-over.png");
-  }
+  padding: 0;
+  margin: 0;
+}
 
-  .titulo{
-    background-image: url(../img/fondo-gris.jpg);
-    color: #F1DAC4;
-    height: auto;
-    font-size: xx-large;
-    font-weight: 600;
-    margin: 0;
-    padding: 0;
-  }
+p {
+  text-align: center;
+  padding: 1%;
+}
 
-  .contenedor{
-    display: flex;
-    justify-content: space-evenly;
-    vertical-align: middle;
-    padding: 1%;
-  }
+body {
+  font-family: "Ysabeau SC", sans-serif;
+  height: 100%;
+}
 
-  .pdp{
-    height: 20%;
-    background-color: #7C90A0;
-    ;
-  }
+main{
+  height: 800px;
+}
+
+.oculto{
+  display: none;
+}
+
+.encabezado {
+  display: flex;
+  justify-content: center;
+  background-color: #7C90A0;
+  padding: 5px;
+}
+
+.boton-main {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #F1DAC4;
+  text-decoration: none;
+  color: #201E1F;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.boton-main:hover {
+  background-color: #201E1F;
+  color: #F1DAC4;
+}
+
+#dark {
+  background-color: #201E1F;
+  color: #F1DAC4;
+}
+
+#dark:hover {
+  background-color: #AA6373;
+  color: snow;
+}
+
+
+.titulo{
+  background-image: url(../img/fondo-gris.jpg);
+  color: #f3e9e0;
+  height: auto;
+  font-size: xx-large;
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+
+.opciones{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1%;
+}
+
+.invisible{
+  display: none;
+}
+
+.pdp{
+  height: 10%;
+  background-color: #7C90A0;
+}
