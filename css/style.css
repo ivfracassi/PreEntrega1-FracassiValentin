@@ -8,24 +8,24 @@ p {
   padding: 1%;
 }
 
-body {
+body{
+  display: flex;
+  flex-direction: column;
   font-family: "Ysabeau SC", sans-serif;
-  height: 100%;
-}
-
-main{
   height: 800px;
 }
 
-.oculto{
-  display: none;
+.encabezado {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: center;
+  background-color: #7C90A0;
 }
 
-.encabezado {
-  display: flex;
-  justify-content: center;
-  background-color: #7C90A0;
-  padding: 5px;
+main{
+  height: 80%;
 }
 
 .boton-main {
@@ -62,20 +62,64 @@ main{
   font-weight: 600;
   margin: 0;
   padding: 0;
+  bottom: 0;
 }
 
-.opciones{
+main{
+  background-image: url(../img/fondo.jpeg);
+}
+
+#opciones{
+  height: 100%;
+}
+
+.listado-menu{
+  padding: 100px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
-  padding: 1%;
+  height: 736px;
+  text-align: center;
+}
+
+.opcion{
+  display: flex;
+  justify-content: center;
+  font-size: x-large;
+  text-align: center;
+  color: snow;
+  padding: 10%;
+  background-image: url(../img/fondo-gris.jpg);
+  width: 30%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.opcion:hover{
+  background-image: url(../img/fondo-hover.jpg);
+  font-weight: bold;
 }
 
 .invisible{
   display: none;
 }
 
-.pdp{
-  height: 10%;
+footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100px;
+  padding: 80px;
   background-color: #7C90A0;
+}
+
+#mostrador{
+  display: flex;
+  justify-content: center;
+  background-image: url(../img/mostrador.jpeg);
+  height: 100%;
+  width: 100%;
+  align-content: center;
+  align-items: center;
+  font-size: large;
 }

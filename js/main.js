@@ -27,8 +27,7 @@ function precargar(clientes){
     for (let i = 0; i < nombres.length; i++) {
         let nom = nombres[i];
         let num = Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000;
-        let indice = Math.floor(Math.random() * preMail.length);
-        let mail = preMail[indice];
+        let mail = preMail[i];
         let nuevo = new Cliente(nom, num, mail);
         clientes.push(nuevo);
         let numeroCliente = "Cliente" + i;
@@ -57,19 +56,20 @@ document.addEventListener('keydown', function(event) {
 function toggleMenu() {
     menuVisible = !menuVisible;
     if (menuVisible) {
-        menu.classList.remove('oculto');
-        contenido.classList.add('oculto');
+        menu.classList.remove('invisible');
+        contenido.classList.add('invisible');
         contenido.innerHTML = ""
     } else {
-        menu.classList.add('oculto');
-        contenido.classList.remove('oculto');
+        menu.classList.add('invisible');
+        contenido.classList.remove('invisible');
     }
 }
 
 //Opcion 1
 function verClientes() {
+    mostrador.innerHTML = " "
     if (clientes.length <= 0) {
-        mostrador.innerHTML = "No hay ningún cliente cargado. Ingrese a opción 2 (cargar cliente).";
+        mostrador.innerHTML = "No hay ningún cliente cargado. Cargue un cliente para comenzar.";
     } else {
         let listaHTML = "<ul>";
         for (let i = 0; i < clientes.length; i++) {
@@ -90,42 +90,74 @@ botonVerCliente.addEventListener("click", function () {
 
 
 //Opcion 2
-function agregarFormulario() {
-    const form = document.getElementById("nc")
-    form.classList.remove("invisible")
-    const nombre = document.getElementById('nombre').value;
-    const telefono = document.getElementById('telefono').value;
-    const email = document.getElementById('email').value;
-    
-    if (!nombre || !telefono || !email) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Por favor, complete todos los campos.',
-        });
+function agregarFormulario(){
+    let form = document.createElement("form")
+    formulario.innerHTML=`
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" id="telefono" placeholder="Número de contacto">
+        <input type="email" id="email" placeholder="Email">
+        <button type="submit">Agregar Cliente</button>`
+    ;
+    mostrador.innerHTML=" "
+    mostrador.appendChild(formulario)
+    form = document.getElementById("form")
+    form.classList.remove("invisible") 
+}
+let verFormulario = document.getElementById("agregarFormulario")
+verFormulario.addEventListener("click", function(){
+    agregarFormulario();
+})    
+
+function agregarCliente(){
+    let nom = document.getElementById("nombre").value;
+    let num = document.getElementById("telefono").value;
+    let mail = document.getElementById("email").value;
+    if (nom == "" || num =="" || mail == ""){
+        Swal.fire(
+            'Error',
+            'No completó todos los campos.',
+            'error'
+          )
         return;
     }
-
-    const nuevo = new Cliente(nombre, parseInt(telefono), email);
-    clientes.push(nuevo);
-    Swal.fire({
-        icon: 'success',
-        title: 'Cliente agregado con éxito',
-    });
-    document.getElementById('nombre').value = '';
-    document.getElementById('telefono').value = '';
-    document.getElementById('email').value = '';
-
-let agregarForm = document.getElementById("agregarFormulario")
-agregarForm.addEventListener("click", function(){
-    agregarFormulario()
-})
-
+    let nuevo = new Cliente(nom, num, mail)
+    clientes.push(nuevo)
+    Swal.fire(
+        'Correcto',
+        'Cliente agregado con exito!.',
+        'success'
+      )
 }
 
+let formulario = document.getElementById("form");
+console.log(formulario);
+formulario.addEventListener("submit", function(event){
+    event.preventDefault();
+    console.log("LO ESTOY POR AGREGAR");
+    agregarCliente();
+});
+
+ 
 //Opcion 3
+function mostrarInput(){
+    let input = document.createElement("form")
+    input.innerHTML=`
+        <input type="text" id="nombre" placeholder="Nombre">
+        <button type="submit" id="enviar">Borrar cliente</button>`
+    ;
+    mostrador.innerHTML=" "
+    mostrador.appendChild(input)
+    input = document.getElementById("input")
+}
+let input = document.getElementById("borrarCliente")
+input.addEventListener("click", function(){
+    mostrarInput()
+})    
+
+
 function borrarCliente(clientes){
-    let nombreBorrar = prompt("Ingrese el nombre del cliente a borrar: ")
+    let nombreBorrar = document.getElementById("nombre").value
+    console.log(nombreBorrar);
     let indiceCliente = -1
     for (let i = 0; i<clientes.length; i++){
         if (clientes[i]. nombre === nombreBorrar){
@@ -135,15 +167,38 @@ function borrarCliente(clientes){
     }
     if (indiceCliente !== -1){
         clientes.splice(indiceCliente, 1);
-        alert("Cliente " + nombreBorrar + " ha sido eliminado exitosamente.")
+        Swal.fire({
+            title: '¿Eliminar cliente?',
+            text: "No podras revertirlo",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Eliminado',
+                'El cliente ha sido eliminado.',
+                'success'
+              )
+            }
+          })
     }
     else{
-        alert("No existe un cliente con ese nombre.")
+        Swal.fire(
+            'Error',
+            'No existe ningun cliente con ese nombre.',
+            'error'
+          )
+        return
     }
 
 }
 
-let botonBorrarCliente = document.getElementById("borrarCliente");
-botonBorrarCliente.addEventListener("click",function(){
+let op3 = document.getElementById("input")
+console.log(op3)
+op3.addEventListener("submit", function(e){
+    e.preventDefault()
     borrarCliente(clientes)
 })
